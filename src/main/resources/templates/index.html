@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>TODO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+
+<body>
+<div class="container my-2">
+    <div class="card">
+        <div class="card-body">
+            <H1>Rick And Morty</H1>
+            <div>
+                <p>
+
+                <form method="get" th:action="@{/list-characters}">
+                    <div class="form-actions">
+                        <button class="btn btn-primary mr-3" type="submit">Get Characters From Mapped Api</button>
+                    </div>
+                </form>
+            </div>
+            </p>
+            <p>
+            <div>
+                <form method="get" th:action="@{/list-characters-pojo}">
+                    <div class="form-actions">
+                        <button class="btn btn-primary mr-3" type="submit">Get Characters From Pojo Api</button>
+                    </div>
+                </form>
+            </div>
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
