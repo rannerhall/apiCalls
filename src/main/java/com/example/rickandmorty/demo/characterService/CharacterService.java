@@ -16,11 +16,16 @@ import java.util.Optional;
 @Service
 public class CharacterService {
 
-    @Autowired
-    private CharacterRepository rickAndMortyRepository;
+    private final CharacterRepository rickAndMortyRepository;
+    private final CharacterApiPojo characterApiPojo;
+    private final CharacterApi characterApi;
 
-    private CharacterApiPojo characterApiPojo = new CharacterApiPojo();
-    private CharacterApi characterApi = new CharacterApi();
+    @Autowired
+    public CharacterService(CharacterRepository rickAndMortyRepository, CharacterApiPojo characterApiPojo, CharacterApi characterApi) {
+        this.rickAndMortyRepository = rickAndMortyRepository;
+        this.characterApiPojo = characterApiPojo;
+        this.characterApi = characterApi;
+    }
 
     public List<Character> getAllCharacters() {
         return rickAndMortyRepository.findAll();
@@ -37,7 +42,6 @@ public class CharacterService {
         if (root.isPresent()) {
             List<Result> results = root.get().getResults();
             for (Result character : results) {
-                setCharacter(character);
                 characterList.add(setCharacter(character));
             }
             saveCharacters(characterList);

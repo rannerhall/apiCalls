@@ -15,8 +15,7 @@ import java.util.List;
 public class CharacterApi {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
-    private CharacterApiUrl URL = new CharacterApiUrl();
-    private CharacterMapper rickAndMortyMapper = new CharacterMapper();
+    private final CharacterMapper rickAndMortyMapper = new CharacterMapper();
 
     private ResponseEntity<String> callApi() {
         RestTemplate restTemplate = new RestTemplate();
@@ -25,7 +24,6 @@ public class CharacterApi {
     }
 
     public List<Character> getCharactersFromApi() {
-        ResponseEntity<String> stringResponseEntity;
         try {
             ResponseEntity<String> stringResponseEntity = callApi();
             if (HttpStatus.OK.equals(stringResponseEntity.getStatusCode())) {
@@ -34,6 +32,6 @@ public class CharacterApi {
         } catch (Exception e) {
             log.warn("", e);
         }
-        return new ArrayList<>();
+        return List.of();
     }
 }

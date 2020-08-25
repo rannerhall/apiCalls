@@ -28,9 +28,9 @@ public class CharacterMapper {
             if (!id.isMissingNode()) {
                 rickAndMorty.setId(id.asLong());
             }
-            JsonNode name = character.path("name");
-            if (!name.isMissingNode()) {
-                rickAndMorty.setName(name.asText());
+            JsonNode characterName = character.path(name);
+            if (!characterName.isMissingNode()) {
+                rickAndMorty.setName(characterName.asText());
             }
             JsonNode status = character.path("status");
             if (!status.isMissingNode()) {
@@ -59,7 +59,7 @@ public class CharacterMapper {
                 rickAndMorty.setLocationName(locationName.asText());
             }
             JsonNode image = character.path("image");
-            if(!image.isMissingNode()){
+            if (!image.isMissingNode()) {
                 rickAndMorty.setImage(image.asText());
             }
             charactersList.add(rickAndMorty);

@@ -14,7 +14,6 @@ import java.util.Optional;
 public class CharacterApiPojo {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
-    private CharacterApiUrl URL = new CharacterApiUrl();
 
     private ResponseEntity<CharactersResponse> callApiWithPojo() {
         RestTemplate restTemplate = new RestTemplate();
@@ -23,7 +22,6 @@ public class CharacterApiPojo {
     }
 
     public Optional<CharactersResponse> getCharacterFromApiPojo() {
-        ResponseEntity<CharactersResponse> stringResponseEntity;
         try {
             ResponseEntity<CharactersResponse> stringResponseEntity = callApiWithPojo();
             if (HttpStatus.OK.equals(stringResponseEntity.getStatusCode())) {
