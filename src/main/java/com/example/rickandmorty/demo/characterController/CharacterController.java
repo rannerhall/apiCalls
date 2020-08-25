@@ -2,7 +2,6 @@ package com.example.rickandmorty.demo.characterController;
 
 import com.example.rickandmorty.demo.characterService.CharacterService;
 import com.example.rickandmorty.demo.model.Character;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,8 +13,11 @@ import java.util.List;
 @RequestMapping("/")
 public class CharacterController {
 
-    @Autowired
-    private CharacterService rickAndMortyService;
+    private final CharacterService rickAndMortyService;
+
+    public CharacterController(CharacterService rickAndMortyService) {
+        this.rickAndMortyService = rickAndMortyService;
+    }
 
     @GetMapping(path = {"/index", "/index.html"})
     public String getIndexPage() {

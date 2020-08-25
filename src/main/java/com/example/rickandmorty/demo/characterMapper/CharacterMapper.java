@@ -23,6 +23,7 @@ public class CharacterMapper {
         List<Character> charactersList = new ArrayList<>();
         for (JsonNode character : results) {
             Character rickAndMorty = new Character();
+            String name = "name";
             JsonNode id = character.path("id");
             if (!id.isMissingNode()) {
                 rickAndMorty.setId(id.asLong());
@@ -44,7 +45,7 @@ public class CharacterMapper {
                 rickAndMorty.setGender(gender.asText());
             }
             JsonNode origin = character.path("origin");
-            JsonNode originName = origin.path("name");
+            JsonNode originName = origin.path(name);
             if (!originName.isMissingNode()) {
                 rickAndMorty.setOriginName(originName.asText());
             }
@@ -53,7 +54,7 @@ public class CharacterMapper {
                 rickAndMorty.setOriginUrl(originUrl.asText());
             }
             JsonNode location = character.path("location");
-            JsonNode locationName = location.path("name");
+            JsonNode locationName = location.path(name);
             if (!locationName.isMissingNode()) {
                 rickAndMorty.setLocationName(locationName.asText());
             }

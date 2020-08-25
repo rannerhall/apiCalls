@@ -2,16 +2,16 @@ package com.example.rickandmorty.demo.characterApi;
 
 import com.example.rickandmorty.demo.characterMapper.CharacterMapper;
 import com.example.rickandmorty.demo.model.Character;
-import com.example.rickandmorty.demo.utils.CharacterApiUrl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class CharacterApi {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
@@ -20,13 +20,14 @@ public class CharacterApi {
 
     private ResponseEntity<String> callApi() {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForEntity(URL.getURL(), String.class);
+        String URL = "https://rickandmortyapi.com/api/character/";
+        return restTemplate.getForEntity(URL, String.class);
     }
 
     public List<Character> getCharactersFromApi() {
         ResponseEntity<String> stringResponseEntity;
         try {
-            stringResponseEntity = callApi();
+            ResponseEntity<String> stringResponseEntity = callApi();
             if (HttpStatus.OK.equals(stringResponseEntity.getStatusCode())) {
                 return rickAndMortyMapper.mapCharacters(stringResponseEntity.getBody());
             }
