@@ -6,9 +6,9 @@ import com.example.rickandmorty.demo.characterApi.characters.CharactersResponse;
 import com.example.rickandmorty.demo.characterApi.characters.Result;
 import com.example.rickandmorty.demo.characterRepository.CharacterRepository;
 import com.example.rickandmorty.demo.model.Character;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +20,7 @@ public class CharacterService {
     private final CharacterApiPojo characterApiPojo;
     private final CharacterApi characterApi;
 
-    @Autowired
+    @Inject
     public CharacterService(CharacterRepository rickAndMortyRepository, CharacterApiPojo characterApiPojo, CharacterApi characterApi) {
         this.rickAndMortyRepository = rickAndMortyRepository;
         this.characterApiPojo = characterApiPojo;
@@ -49,17 +49,17 @@ public class CharacterService {
     }
 
     private Character setCharacter(Result character) {
-        Character rickAndMorty = new Character();
-        rickAndMorty.setId(character.getId());
-        rickAndMorty.setName(character.getName());
-        rickAndMorty.setStatus(character.getStatus());
-        rickAndMorty.setSpecies(character.getSpecies());
-        rickAndMorty.setGender(character.getGender());
-        rickAndMorty.setOriginName(character.getOrigin().getName());
-        rickAndMorty.setOriginUrl(character.getOrigin().getUrl());
-        rickAndMorty.setLocationName(character.getLocation().getName());
-        rickAndMorty.setImage(character.getImage());
-        return rickAndMorty;
+        Character newCharacter = new Character();
+        newCharacter.setId(character.getId());
+        newCharacter.setName(character.getName());
+        newCharacter.setStatus(character.getStatus());
+        newCharacter.setSpecies(character.getSpecies());
+        newCharacter.setGender(character.getGender());
+        newCharacter.setOriginName(character.getOrigin().getName());
+        newCharacter.setOriginUrl(character.getOrigin().getUrl());
+        newCharacter.setLocationName(character.getLocation().getName());
+        newCharacter.setImage(character.getImage());
+        return newCharacter;
     }
 
     private void saveCharacters(List<Character> characterList) {

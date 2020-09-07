@@ -15,8 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 @SpringBootTest
 class CharacterMapperTest {
 
-    private CharacterMapper rickAndMortyMapper = new CharacterMapper();
-    private JsonToTest jsonToTest = new JsonToTest();
+    private final CharacterMapper rickAndMortyMapper = new CharacterMapper();
+    private final JsonToTest jsonToTest = new JsonToTest();
 
     @Test
     void character_name_is_correct_success() throws JsonProcessingException {
@@ -28,6 +28,10 @@ class CharacterMapperTest {
         assertNotEquals("Bird person", getRickAndMorty().get(0).getName());
     }
 
+    @Test
+    void character_id_is_correct_success() throws JsonProcessingException {
+        assertEquals(1L, getRickAndMorty().get(0).getId());
+    }
 
     private List<Character> getRickAndMorty() throws JsonProcessingException {
         String rickAndMortyJson = jsonToTest.json;

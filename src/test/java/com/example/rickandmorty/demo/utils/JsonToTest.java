@@ -2,7 +2,7 @@ package com.example.rickandmorty.demo.utils;
 
 public class JsonToTest {
 
-    public String json = "{\n" +
+    public final String json = "{\n" +
             "    \"info\": {\n" +
             "        \"count\": 591,\n" +
             "        \"pages\": 30,\n" +
