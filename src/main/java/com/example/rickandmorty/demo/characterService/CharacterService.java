@@ -1,7 +1,6 @@
 package com.example.rickandmorty.demo.characterService;
 
 import com.example.rickandmorty.demo.characterApi.CharacterApi;
-import com.example.rickandmorty.demo.characterApi.CharacterApiPojo;
 import com.example.rickandmorty.demo.characterApi.characters.CharactersResponse;
 import com.example.rickandmorty.demo.characterApi.characters.Result;
 import com.example.rickandmorty.demo.characterRepository.CharacterRepository;
@@ -17,13 +16,11 @@ import java.util.Optional;
 public class CharacterService {
 
     private final CharacterRepository rickAndMortyRepository;
-    private final CharacterApiPojo characterApiPojo;
     private final CharacterApi characterApi;
 
     @Inject
-    public CharacterService(CharacterRepository rickAndMortyRepository, CharacterApiPojo characterApiPojo, CharacterApi characterApi) {
+    public CharacterService(CharacterRepository rickAndMortyRepository, CharacterApi characterApi) {
         this.rickAndMortyRepository = rickAndMortyRepository;
-        this.characterApiPojo = characterApiPojo;
         this.characterApi = characterApi;
     }
 
@@ -37,7 +34,7 @@ public class CharacterService {
     }
 
     public void requestCharactersFromApiPojo() {
-        Optional<CharactersResponse> root = characterApiPojo.getCharacterFromApiPojo();
+        Optional<CharactersResponse> root = characterApi.getCharacterFromApiPojo();
         List<Character> characterList = new ArrayList<>();
         if (root.isPresent()) {
             List<Result> results = root.get().getResults();

@@ -27,16 +27,18 @@ public class CharacterController {
     @RequestMapping(path = "/list-characters")
     public String getAllCharactersFromMappedApi(Model model) {
         rickAndMortyService.requestCharactersFromApi();
-        List<Character> getCharacterList = rickAndMortyService.getAllCharacters();
-        model.addAttribute("characters", getCharacterList);
+        model.addAttribute("characters", getAllCharacters());
         return "list-characters";
     }
 
     @RequestMapping(path = "/list-characters-pojo")
     public String getAllCharactersFromApiPojo(Model model) {
         rickAndMortyService.requestCharactersFromApiPojo();
-        List<Character> getCharacterList = rickAndMortyService.getAllCharacters();
-        model.addAttribute("characters", getCharacterList);
+        model.addAttribute("characters", getAllCharacters());
         return "list-characters";
+    }
+
+    private List<Character> getAllCharacters(){
+        return rickAndMortyService.getAllCharacters();
     }
 }
