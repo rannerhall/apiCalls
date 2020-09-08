@@ -19,12 +19,12 @@ import java.util.Optional;
 public class CharacterApi {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
-    private final CharacterMapper rickAndMortyMapper;
+    private final CharacterMapper characterMapper;
     private final RestTemplate restTemplate;
 
     @Inject
     public CharacterApi(CharacterMapper rickAndMortyMapper, RestTemplateBuilder builder) {
-        this.rickAndMortyMapper = rickAndMortyMapper;
+        this.characterMapper = rickAndMortyMapper;
         this.restTemplate = builder.build();
     }
 
@@ -37,7 +37,7 @@ public class CharacterApi {
         try {
             ResponseEntity<String> stringResponseEntity = callApi(String.class);
             if (HttpStatus.OK.equals(stringResponseEntity.getStatusCode())) {
-                return rickAndMortyMapper.mapCharacters(stringResponseEntity.getBody());
+                return characterMapper.mapCharacters(stringResponseEntity.getBody());
             }
         } catch (Exception e) {
             log.warn("", e);

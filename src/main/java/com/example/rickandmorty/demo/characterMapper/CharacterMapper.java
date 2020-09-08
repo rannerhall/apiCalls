@@ -6,15 +6,21 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
 
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class CharacterMapper {
 
-    public List<Character> mapCharacters(String name) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper;
 
+    @Inject
+    public CharacterMapper(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
+    }
+
+    public List<Character> mapCharacters(String name) throws JsonProcessingException {
         JsonNode jsonNode = objectMapper.readTree(name);
         JsonNode results = jsonNode.path("results");
 

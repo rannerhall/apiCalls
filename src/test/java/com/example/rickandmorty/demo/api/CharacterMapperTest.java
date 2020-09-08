@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.inject.Inject;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,8 +16,13 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 @SpringBootTest
 class CharacterMapperTest {
 
-    private final CharacterMapper rickAndMortyMapper = new CharacterMapper();
+    private final CharacterMapper rickAndMortyMapper;
     private final JsonToTest jsonToTest = new JsonToTest();
+
+    @Inject
+    public CharacterMapperTest(CharacterMapper rickAndMortyMapper) {
+        this.rickAndMortyMapper = rickAndMortyMapper;
+    }
 
     @Test
     void character_name_is_correct_success() throws JsonProcessingException {
