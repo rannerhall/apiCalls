@@ -4,10 +4,12 @@ import com.example.rickandmorty.demo.model.Character;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class CharacterMapper {
 
     public List<Character> mapCharacters(String name) throws JsonProcessingException {
